@@ -1,0 +1,17 @@
+- name: install PostgreSQL
+  action: yum pkg=postgresql-server state=latest
+
+- name: initdb
+  action: shell /etc/init.d/postgresql initdb --no-locale -D /var/lib/pgsql/data/ -E UNICODE
+  ignore_errors: yes
+  sudo: true
+  notify:
+  - restart postgresql
+
+- name: on PostgreSQL
+  action: command /sbin/chkconfig postgresql on
+  sudo: true
+
+- name: check PostgreSQL
+  action: service name=postgresql state=started
+  sudo: true
