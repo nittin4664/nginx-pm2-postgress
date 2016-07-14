@@ -1,14 +1,5 @@
 - name: install PostgreSQL
   action: yum pkg=postgresql-server state=latest
 
-- name: initdb
-  action: shell /etc/init.d/postgresql initdb --no-locale -D /var/lib/pgsql/data/ -E UNICODE
-  ignore_errors: yes
-  notify:
-  - restart postgresql
-
-- name: on PostgreSQL
-  action: command /sbin/chkconfig postgresql on
-
-- name: check PostgreSQL
-  action: service name=postgresql state=started
+- name: install psycopg2
+  action: yum pkg=python-psycopg2 state=latest

@@ -1,0 +1,23 @@
+- name: initdb
+  action: shell /etc/init.d/postgresql initdb --no-locale -D /var/lib/pgsql/data/ -E UNICODE
+  ignore_errors: yes
+  notify:
+  - restart postgresql
+
+- name: ensure database is created
+  sudo_user: postgres
+  postgresql_db: name={{dbname}}
+
+- name: ensure user has access to database
+  sudo_user: postgres
+  postgresql_user: db={{dbname}} name={{dbuser}} password={{dbpassword}} priv=ALL
+
+- name: ensure user does not have unnecessary privilege
+  sudo_user: postgres
+  postgresql_user: name={{dbuser}} role_attr_flags=NOSUPERUSER,NOCREATEDB
+
+- name: on PostgreSQL
+  action: command /sbin/chkconfig postgresql on
+
+- name: check PostgreSQL
+  action: service name=postgresql state=started

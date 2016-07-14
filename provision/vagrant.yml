@@ -1,4 +1,8 @@
 - hosts: all
   sudo: true
+  vars:
+    dbname: test
+    dbuser: testuser
+    dbpassword: testuserpassword
   roles:
       - postgress
