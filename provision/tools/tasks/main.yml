@@ -1,0 +1,5 @@
+- name: install git
+  yum: name=git
+
+- name: install rpm dev tool for package
+  yum: name=rpmdevtools
