@@ -4,6 +4,9 @@
 - name: accessing epl repo over http
   lineinfile: dest=/etc/yum.repos.d/epel.repo regexp=^mirrorlist=https line=mirrorlist=http
 
+- name: install nodejs
+  yum: name=nodejs
+
 - name: install npm
   yum: name=npm
 
