@@ -6,3 +6,4 @@
     dbpassword: testuserpassword
   roles:
       - postgress
+      - pm2

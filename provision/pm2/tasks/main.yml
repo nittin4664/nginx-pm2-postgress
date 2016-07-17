@@ -1,0 +1,11 @@
+- name: get nodejs EPEL repository
+  yum: name=epel-release
+
+- name: accessing epl repo over http
+  lineinfile: dest=/etc/yum.repos.d/epel.repo regexp=^mirrorlist=https line=mirrorlist=http
+
+- name: install npm
+  yum: name=npm
+
+- name: install pm2 via npm
+  npm: name=pm2 global=yes
