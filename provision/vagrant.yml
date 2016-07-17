@@ -4,7 +4,11 @@
     dbname: test
     dbuser: testuser
     dbpassword: testuserpassword
+    rpm_location: '../post-node-react-1.0.0-1.noarch.rpm'
+    app_name: 'post-node-react-1.0.0-1.noarch.rpm'
+    app_name: 'post-node-react'
   roles:
       - postgress
       - pm2
       - tools
+      - app

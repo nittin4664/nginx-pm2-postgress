@@ -1,0 +1,11 @@
+- name: Copying local rpm to the machine
+  copy: src={{rpm_location}} dest=/tmp/
+
+- name: Copying upstart file
+  copy: src=process.json dest=/tmp/
+
+- name: installing the app
+  yum: name=/tmp/{{app_name}}-1.0.0-1.noarch.rpm state=present
+
+- name: start app
+  command: pm2 start /tmp/process.json
